@@ -19,4 +19,14 @@ export default abstract class AbstractModel<T> {
   public async create(obj: T): Promise<T> {
     return this.model.create({ ...obj });
   }
+
+  public async find(): Promise<T[]> {
+    const result = await this.model.find();
+    return result;
+  }
+
+  public async findById(_id: string): Promise<T | null> {
+    const result = await this.model.findOne({ _id });
+    return result;
+  }
 }

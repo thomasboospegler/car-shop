@@ -29,4 +29,24 @@ export default class CarsController {
       this.next(err);
     }
   }
+
+  public async getAllCars() {
+    try {
+      const allCars = await this.service.getAllCars();
+
+      return this.res.status(200).json(allCars);
+    } catch (err) {
+      this.next(err);
+    }
+  }
+
+  public async getCarById() {
+    try {
+      const resultCar = await this.service.getCarById(this.req.params.id);
+
+      return this.res.status(200).json(resultCar);
+    } catch (err) {
+      this.next(err);
+    }
+  }
 }
