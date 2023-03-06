@@ -12,4 +12,13 @@ routers.post(
   ) => new MotorcyclesController(req, res, next).createMotorcycle(),
 );
 
+routers.get(
+  '/',
+  (
+    req: Request,
+    res: Response, 
+    next: NextFunction,
+  ) => new MotorcyclesController(req, res, next).getAllMotorcycles(),
+);
+
 export default routers;
