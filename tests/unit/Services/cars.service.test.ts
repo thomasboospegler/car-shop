@@ -5,7 +5,6 @@ import { createCarBody, carMock, carsArrayMock } from '../Mocks/CarsMocks';
 import CarsService from '../../../src/Services/cars.service';
 import ErrorHandler from '../../../src/Utils/ErrorHandler';
 
-const CAR_NOT_FOUND = 'Car not found';
 const validId = '7429434f34c397abcde040c4';
 const invalidId = 'xxxxxxxxxxx';
 
@@ -52,7 +51,7 @@ describe('CarsService', function () {
         const service = new CarsService();
         await service.getCarById(invalidId);
       } catch (error) {
-        expect((error as ErrorHandler).message).to.equal(CAR_NOT_FOUND);
+        expect((error as ErrorHandler).message).to.equal('Car not found');
       }
     });
   });
