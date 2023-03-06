@@ -48,7 +48,7 @@ describe('MotorcyclesService', function () {
       expect(result).to.be.deep.equal(motorcycleMock);
     });
   
-    it('Should give an error by search an unexisted car', async function () {
+    it('Should give an error by search an unexisted motorcycle', async function () {
       sinon.stub(Model, 'findOne').resolves(false);
 
       try {
@@ -57,6 +57,28 @@ describe('MotorcyclesService', function () {
       } catch (error) {
         expect((error as ErrorHandler).message).to.equal('Motorcycle not found');
       }
+    });
+  });
+
+  describe('UpdateMotorcycle', function () {
+    it('Should give an error with unexisted id', async function () {
+      sinon.stub(Model, 'findByIdAndUpdate').resolves(false);
+  
+      try {
+        const service = new MotorcyclesService();
+        await service.updateMotorcycle(invalidId, createMotorcycleData);
+      } catch (error) {
+        expect((error as ErrorHandler).message).to.equal('Motorcycle not found');
+      }
+    });
+
+    it('Should update a motorcycle', async function () {
+      sinon.stub(Model, 'findByIdAndUpdate').resolves(motorcycleMock);
+  
+      const service = new MotorcyclesService();
+      const result = await service.updateMotorcycle(validId, createMotorcycleData);
+  
+      expect(result).to.be.deep.equal(motorcycleMock);
     });
   });
 });
