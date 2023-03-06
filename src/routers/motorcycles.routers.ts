@@ -32,4 +32,14 @@ routers.get(
   ) => new MotorcyclesController(req, res, next).getMotorcycleById(),
 );
 
+routers.put(
+  '/:id',
+  validateId,
+  (
+    req: Request,
+    res: Response, 
+    next: NextFunction,
+  ) => new MotorcyclesController(req, res, next).updateMotorcycle(),
+);
+
 export default routers;
