@@ -32,4 +32,14 @@ routers.get(
   ) => new CarsController(req, res, next).getCarById(),
 );
 
+routers.put(
+  '/:id',
+  validateId,
+  (
+    req: Request,
+    res: Response, 
+    next: NextFunction,
+  ) => new CarsController(req, res, next).updateCar(),
+);
+
 export default routers;

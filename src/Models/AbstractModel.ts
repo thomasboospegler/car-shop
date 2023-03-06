@@ -2,7 +2,8 @@ import {
   model, 
   Model, 
   models, 
-  Schema, 
+  Schema,
+  UpdateQuery,
 } from 'mongoose';
 
 export default abstract class AbstractModel<T> {
@@ -27,6 +28,15 @@ export default abstract class AbstractModel<T> {
 
   public async findById(_id: string): Promise<T | null> {
     const result = await this.model.findOne({ _id });
+    return result;
+  }
+
+  public async update(_id: string, obj: Partial<T>): Promise<T | null> {
+    const result = await this.model.findByIdAndUpdate(
+      { _id },
+      { ...obj } as UpdateQuery<T>,
+      { new: true },
+    );
     return result;
   }
 }

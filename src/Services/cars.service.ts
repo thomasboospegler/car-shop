@@ -33,4 +33,14 @@ export default class CarsService {
 
     return this.createDomain(car);
   }
+
+  public async updateCar(id: string, car: Partial<ICar>): Promise<Car | null> {
+    const model = new CarModel();
+
+    const carUpdated = await model.update(id, car);
+
+    if (!carUpdated) throw new ErrorHandler(404, 'Car not found');
+
+    return this.createDomain(carUpdated);
+  }
 }
