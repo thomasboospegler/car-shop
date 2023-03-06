@@ -39,4 +39,14 @@ export default class MotorcyclesController {
       this.next(err);
     }
   }
+
+  public async getMotorcycleById() {
+    try {
+      const resultMotorcycle = await this.service.getMotorcycleById(this.req.params.id);
+
+      return this.res.status(200).json(resultMotorcycle);
+    } catch (err) {
+      this.next(err);
+    }
+  }
 }
