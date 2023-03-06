@@ -1,9 +1,9 @@
 import { Request, Router, Response, NextFunction } from 'express';
 import MotorcyclesController from '../Controllers/motorcycles.controller';
 
-const routes = Router();
+const routers = Router();
 
-routes.post(
+routers.post(
   '/',
   (
     req: Request,
@@ -11,3 +11,5 @@ routes.post(
     next: NextFunction,
   ) => new MotorcyclesController(req, res, next).createMotorcycle(),
 );
+
+export default routers;
